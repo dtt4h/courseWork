@@ -1,3 +1,4 @@
+#Инициализация БД
 import sqlite3
 
 class Database:
