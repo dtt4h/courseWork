@@ -1,3 +1,4 @@
+#Главная программа
 import tkinter as tk
 from auth_window import AuthWindow
 from shop_window import ShopApp
