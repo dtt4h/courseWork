@@ -1,3 +1,4 @@
+#Графика
 import tkinter as tk
 def center_window(window, width_ratio, height_ratio):
     """Центрирует окно на экране."""
