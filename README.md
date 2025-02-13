@@ -1,1 +1,1 @@
-# courseWork
+# courseWork fot NSTU
