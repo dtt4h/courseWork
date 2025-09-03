@@ -31,24 +31,28 @@ class ShopApp:
 
     def open_add_shop_dialog(self):
         """Открытие диалогового окна для добавления магазина."""
-        AddShopDialog(self.root)
+        AddShopDialog(self)
 
     def open_delete_shop_dialog(self):
-        """Открытие диалогового окна для удаления магазина."""
+        """Открытие диалогового окна для удаления выбранного магазина."""
         selected_item = self.tree.selection()
         if selected_item:
             selected_shop = self.tree.item(selected_item)['values']
-            DeleteShopDialog(self.root, selected_shop)
+            DeleteShopDialog(self, selected_shop)
         else:
-            DeleteShopDialog(self.root)
+            messagebox.showerror("Ошибка", "Выберите магазин для удаления.")
+
+    def open_delete_by_name_dialog(self):
+        """Открытие диалогового окна для удаления магазина по имени."""
+        DeleteShopDialog(self)
 
     def open_update_phone_dialog(self):
         """Открытие диалогового окна для обновления телефона."""
-        UpdatePhoneDialog(self.root)
+        UpdatePhoneDialog(self)
 
     def open_export_import_dialog(self):
         """Открытие диалогового окна для экспорта/импорта."""
-        ExportImportDialog(self.root)
+        ExportImportDialog(self)
 
 
 
@@ -63,10 +67,9 @@ class ShopApp:
         # Buttons
         RoundedButton(button_frame, text="Добавить магазин через диалог", command=self.open_add_shop_dialog).pack(side=tk.LEFT, padx=10)
         RoundedButton(button_frame, text="Удалить магазин", command=self.open_delete_shop_dialog).pack(side=tk.LEFT, padx=10)
-        RoundedButton(button_frame, text="Удалить магазин по имени", command=self.open_delete_shop_dialog).pack(side=tk.LEFT, padx=10)
+        RoundedButton(button_frame, text="Удалить магазин по имени", command=self.open_delete_by_name_dialog).pack(side=tk.LEFT, padx=10)
         RoundedButton(button_frame, text="Обновить телефон", command=self.open_update_phone_dialog).pack(side=tk.LEFT, padx=10)
-        RoundedButton(button_frame, text="Экспорт в JSON", command=self.open_export_import_dialog).pack(side=tk.LEFT, padx=10)
-        RoundedButton(button_frame, text="Импорт из JSON", command=self.open_export_import_dialog).pack(side=tk.LEFT, padx=10)
+        RoundedButton(button_frame, text="Экспорт/Импорт JSON", command=self.open_export_import_dialog).pack(side=tk.LEFT, padx=10)
 
         self.tree_frame = tk.Frame(self.root)
         self.tree_frame.pack(fill=tk.BOTH, expand=True, padx=20, pady=10)
