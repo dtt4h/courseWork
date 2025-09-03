@@ -4,14 +4,14 @@ from database import Database
 
 
 class UpdatePhoneDialog:
-    def __init__(self, parent):
-        self.parent = parent
+    def __init__(self, app):
+        self.app = app
         self.db = Database()
         self.create_dialog()
 
     def create_dialog(self):
         """Создание диалогового окна для обновления номера телефона."""
-        self.dialog = tk.Toplevel(self.parent)
+        self.dialog = tk.Toplevel(self.app.root)
         self.dialog.title("Обновить телефон")
         self.dialog.geometry("400x250")
         self.dialog.resizable(False, False)
@@ -71,8 +71,8 @@ class UpdatePhoneDialog:
             messagebox.showinfo("Успех", message)
             self.dialog.destroy()
             # Обновляем данные в главном окне
-            if hasattr(self.parent, 'load_shop_data'):
-                self.parent.load_shop_data()
+            if hasattr(self.app, 'load_shop_data'):
+                self.app.load_shop_data()
         else:
             messagebox.showerror("Ошибка", message)
 

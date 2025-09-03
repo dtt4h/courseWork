@@ -4,15 +4,15 @@ from database import Database
 
 
 class DeleteShopDialog:
-    def __init__(self, parent, selected_shop=None):
-        self.parent = parent
+    def __init__(self, app, selected_shop=None):
+        self.app = app
         self.selected_shop = selected_shop
         self.db = Database()
         self.create_dialog()
 
     def create_dialog(self):
         """Создание диалогового окна для удаления магазина."""
-        self.dialog = tk.Toplevel(self.parent)
+        self.dialog = tk.Toplevel(self.app.root)
         self.dialog.title("Удалить магазин")
         self.dialog.geometry("400x200")
         self.dialog.resizable(False, False)
@@ -61,8 +61,8 @@ class DeleteShopDialog:
             messagebox.showinfo("Успех", message)
             self.dialog.destroy()
             # Обновляем данные в главном окне
-            if hasattr(self.parent, 'load_shop_data'):
-                self.parent.load_shop_data()
+            if hasattr(self.app, 'load_shop_data'):
+                self.app.load_shop_data()
         else:
             messagebox.showerror("Ошибка", message)
 
@@ -79,8 +79,8 @@ class DeleteShopDialog:
             messagebox.showinfo("Успех", message)
             self.dialog.destroy()
             # Обновляем данные в главном окне
-            if hasattr(self.parent, 'load_shop_data'):
-                self.parent.load_shop_data()
+            if hasattr(self.app, 'load_shop_data'):
+                self.app.load_shop_data()
         else:
             messagebox.showerror("Ошибка", message)
 

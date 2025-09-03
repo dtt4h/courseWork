@@ -5,14 +5,14 @@ from database import Database
 
 
 class ExportImportDialog:
-    def __init__(self, parent):
-        self.parent = parent
+    def __init__(self, app):
+        self.app = app
         self.db = Database()
         self.create_dialog()
 
     def create_dialog(self):
         """Создание диалогового окна для экспорта/импорта данных."""
-        self.dialog = tk.Toplevel(self.parent)
+        self.dialog = tk.Toplevel(self.app.root)
         self.dialog.title("Экспорт/Импорт данных")
         self.dialog.geometry("300x150")
         self.dialog.resizable(False, False)
@@ -78,8 +78,8 @@ class ExportImportDialog:
 
             messagebox.showinfo("Успех", f"Данные успешно импортированы из {file_name}.")
             # Обновляем данные в главном окне
-            if hasattr(self.parent, 'load_shop_data'):
-                self.parent.load_shop_data()
+            if hasattr(self.app, 'load_shop_data'):
+                self.app.load_shop_data()
 
         except Exception as e:
             messagebox.showerror("Ошибка", f"Не удалось импортировать данные: {e}")
